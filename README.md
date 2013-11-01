@@ -45,7 +45,27 @@ int length(CDLList &l) {
 Operations
 ----------
 
-### access [next] or [prev]ious element
+### Create a single-element node
+
+````C++
+CDLList a;
+````
+
+This constructor creates a single-element node.
+
+Cost: ~2 instructions
+
+### Create a node in a list
+
+````C++
+CDLList a(l);
+````
+
+This constructor creates node A and add it to list L
+
+Cost: ~4 instructions
+
+### [next] or [prev]ious element
 
 ````C++
 CDLList &a = b.next();
@@ -93,7 +113,7 @@ Move A to the list B belongs to, and vice-versa.
 
 Cost: ~10 instructions
 
-### other predicates
+### Predicates
 
 ````C++
 
@@ -105,7 +125,7 @@ Cost: ~10 instructions
 
 ````
 
-### automatic removal
+### Automatic removal on object destruction
 
 The destructor of a node detaches it from any list it belongs to:
 
