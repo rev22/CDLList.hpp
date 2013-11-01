@@ -98,5 +98,5 @@ CDLList foo;
   assert(length(bar) == 2);
 }
 // bar's destructor was called and foo now is alone again
-assert(length(foo) == 1)
+assert(length(foo) == 1);
 ````
