@@ -97,11 +97,11 @@ Cost: ~10 instructions
 
 ````C++
 
-    (a == b)  // ⇔ A and B are the same element. Cost: ~1 instruction.
+    (a == b)  // A and B are the same element. Cost: ~1 instruction.
 
-    a.lone()  // ⇔ A is a 1-element list.     Cost: ~1 instruction.
-    a.bevy()  // ⇔ A has 3 or more elements.  Cost: ~1 instruction.
-    a.pair()  // ⇔ A has 2 elements.          Cost: ~2 instructions.
+    a.lone()  // A is a 1-element list.     Cost: ~1 instruction.
+    a.bevy()  // A has 3 or more elements.  Cost: ~1 instruction.
+    a.pair()  // A has 2 elements.          Cost: ~2 instructions.
 
 ````
 
@@ -111,13 +111,16 @@ The destructor of a node detaches it from any list it belongs to:
 
 ````C++
 CDLList foo;
+
 //  foo is on a list by itself
 {
   CDLList bar(foo);
+
   // Now both foo and bar are in the same list
   assert(length(foo) == 2);
   assert(length(bar) == 2);
 }
+
 // bar's destructor was called and foo now is alone again
 assert(length(foo) == 1);
 ````
