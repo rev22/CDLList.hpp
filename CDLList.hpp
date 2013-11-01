@@ -14,7 +14,7 @@
 
 class CDLList {
 private:
-  template <typename X> static void swap_pointers(X*&a, X*&b) { X*c = a; a = b; b = c; }
+  template <typename X> inline static void swap_pointers(X*&a, X*&b) { X*c = a; a = b; b = c; }
   template <typename X> inline static X* unconst(const X *x) { return const_cast<X*>(x); };
 protected:
   CDLList* _prev;
