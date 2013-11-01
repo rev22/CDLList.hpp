@@ -31,16 +31,16 @@ CDLList b(a);
 CDLList c(b);
 ````
 
-Count how many elements a circular list has:
+Create a function returning the size of a list:
+
 ````C++
-void length(CDLList &l) {
+int length(CDLList &l) {
     CDLList *x = &l;
-    int c = 0;
-    do { c++; x = &(x->next()); } while (x != &l);
-    return c;
+    int count = 0;
+    do { count++; x = &(x->next()); } while (x != &l);
+    return count;
 }
 ````
-
 
 Operations
 ----------
