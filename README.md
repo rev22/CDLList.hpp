@@ -51,7 +51,7 @@ Operations
 CDLList a;
 ````
 
-This constructor creates a single-element node.
+This constructor creates a single-element list.
 
 Cost: ~2 instructions
 
