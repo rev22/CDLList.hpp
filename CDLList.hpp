@@ -43,6 +43,18 @@ public:
       _next->_prev = _prev;
   };
 
+  // True iff this is a 1-element list
+  inline bool lone() { return _prev == this; };
+
+  // True iff this a list with three or more elements
+  inline bool bevy() { return _prev != _next; };
+
+  // True iff this list has two elements
+  inline bool pair() { return lone() && !bevy(); };
+
+  inline bool operator ==(CDLList &l) { return this == &l; }
+  inline bool operator !=(CDLList &l) { return this != &l; }
+  
   inline CDLList& next() { return *_next; };
   inline CDLList& prev() { return *_prev; };
   
