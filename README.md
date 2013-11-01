@@ -13,7 +13,7 @@ Sample usage
 Create a single-node list:
 
 ````C++
-   CDLList a;
+CDLList a;
 ````
 
 Create a two-nodes list:
