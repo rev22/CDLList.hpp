@@ -1,7 +1,7 @@
 CDLList.hpp
 ===========
 
-Circular doubly-linked list, implemented as a header-only C++ library.
+Circular doubly-linked list, implemented as a header-only C++11 library.
 
 All operations are O(1) and composed of few instructions.
 
