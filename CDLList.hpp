@@ -50,7 +50,7 @@ public:
   inline bool bevy() { return _prev != _next; };
 
   // True iff this list has two elements
-  inline bool pair() { return lone() && !bevy(); };
+  inline bool pair() { return (_prev != this) && (_prev == _next); };
 
   inline bool operator ==(CDLList &l) { return this == &l; }
   inline bool operator !=(CDLList &l) { return this != &l; }

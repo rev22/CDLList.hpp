@@ -32,14 +32,20 @@ int main() {
     // The destructor of a node detaches it from any list it belongs to:
 
     CDLList foo;
+    
     //  foo is on a list by itself
+    assert(foo.lone());
     {
       CDLList bar(foo);
       // Now both foo and bar are in the same list
       assert(length(foo) == 2);
       assert(length(bar) == 2);
+      assert(foo.pair());
+      assert(bar.pair());
     }
+
     // bar's destructor was called and foo now is alone again
+    assert(foo.lone());
     assert(length(foo) == 1);
   }
   
