@@ -5,6 +5,7 @@ Circular doubly-linked list, implemented as a header-only C++ library.
 
 All operations are O(1) and composed of few instructions.
 
+Copyright © 2013 Michele Bini (see the file COPYING for licensing details)
 
 Sample usage
 ------------
