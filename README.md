@@ -3,7 +3,7 @@ CDLList.hpp
 
 Circular doubly-linked list, implemented as a header-only C++11 library.
 
-All operations are O(1) and composed of few instructions.
+All operations provided are constant-time and composed of few instructions.
 
 Copyright © 2013 Michele Bini (see the file COPYING for licensing details)
 
@@ -53,6 +53,8 @@ CDLList &c = b.prev();
 ````
 Returns a reference to the next or previous element in the list.
 
+Cost: ~1 instruction
+
 ### [cull] element from list
 
 ````C++
@@ -62,6 +64,8 @@ Removes [node] from any circular list it belongs to.
 
 After this the node itself is in a 1-size list, the next and prev pointers both refer to itself.
 
+Cost: ~4 intructions
+
 ### [pass] node to another list
 
 ````C++
@@ -69,20 +73,37 @@ node.pass(list);
 ````
 Removes [node] from any circular list it belongs to, then add it to [list].
 
+Cost: ~7 instructions
 
 ### [join] two lists
 
 ````C++
 a.join(b);
 ````
-Creates a single list by joining the lists a and b belong to.
+Creates a single list by joining the lists A and B belong to.
+
+Cost: ~7 instructions
 
 ### [swap] nodes belonging to different lists
 
 ````C++
 a.swap(b);
 ````
-Move a to the list b belongs to, and vice-versa.
+Move A to the list B belongs to, and vice-versa.
+
+Cost: ~10 instructions
+
+### other predicates
+
+````C++
+
+    (a == b)  // ⇔ A and B are the same element. Cost: ~1 instruction.
+
+    a.lone()  // ⇔ A is a 1-element list.     Cost: ~1 instruction.
+    a.bevy()  // ⇔ A has 3 or more elements.  Cost: ~1 instruction.
+    a.pair()  // ⇔ A has 2 elements.          Cost: ~2 instructions.
+
+````
 
 ### automatic removal
 
@@ -100,3 +121,5 @@ CDLList foo;
 // bar's destructor was called and foo now is alone again
 assert(length(foo) == 1);
 ````
+
+The cost of the destructor is approximately 2 instructions.
