@@ -31,8 +31,27 @@ CDLList b(a);
 CDLList c(b);
 ````
 
+Count how many elements a circular list has:
+````C++
+void length(CDLList &l) {
+    CDLList *x = &l;
+    int c = 0;
+    do { c++; x = &(x->next()); } while (x != &l);
+    return c;
+}
+````
+
+
 Operations
 ----------
+
+### access [next] or [prev]ious element
+
+````C++
+CDLList &a = b.next();
+CDLList &c = b.prev();
+````
+Returns a reference to the next or previous element in the list.
 
 ### [cull] element from list
 
