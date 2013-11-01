@@ -13,12 +13,16 @@
 // along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 class CDLList {
+
 private:
+  // Utility functions
   template <typename X> inline static void swap_pointers(X*&a, X*&b) { X*c = a; a = b; b = c; }
   template <typename X> inline static X* unconst(const X *x) { return const_cast<X*>(x); };
+
 protected:
   CDLList* _prev;
   CDLList* _next;
+
 public:
   inline CDLList() :_prev(unconst(this)), _next(unconst(this)) {};
 
