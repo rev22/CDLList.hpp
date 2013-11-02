@@ -38,6 +38,10 @@ public:
     _next->_prev = this;
   };
 
+  // Disable default copy semantics
+  inline CDLList(const CDLList &) = delete;
+  inline CDLList& operator=(const CDLList &) = delete;
+  
   inline ~CDLList() {
       _prev->_next = _next;
       _next->_prev = _prev;

@@ -13,12 +13,15 @@ int main() {
   {
     // Create a single-node list:
     CDLList a;
+    assert(length(a) == 1);
   }
 
   {
     // Create a two-nodes list:
     CDLList a;
     CDLList b(a);
+    assert(length(a) == 2);
+    assert(length(b) == 2);
   }
 
   {
@@ -26,6 +29,9 @@ int main() {
     CDLList a;
     CDLList b(a);
     CDLList c(b);
+    assert(length(a) == 3);
+    assert(length(b) == 3);
+    assert(length(c) == 3);
   }
 
   {
