@@ -20,20 +20,19 @@
 #define __CDLLIST_HPP__
 
 class CDLList {
+protected:
+  CDLList* _next;
+  CDLList* _prev;
 
 private:
   // Utility functions
   template <typename X> inline static void swap_pointers(X*&a, X*&b) { X*c = a; a = b; b = c; }
   template <typename X> inline static X* unconst(const X *x) { return const_cast<X*>(x); };
 
-protected:
-  CDLList* _prev;
-  CDLList* _next;
-
 public:
-  inline CDLList() :_prev(unconst(this)), _next(unconst(this)) {};
+  inline CDLList() :_next(unconst(this)), _prev(unconst(this)) {};
 
-  inline CDLList(CDLList &u) :_prev(&u), _next(u._next) {
+  inline CDLList(CDLList &u) :_next(u._next), _prev(&u) {
     u._next = this;
     _next->_prev = this;
   };
@@ -64,43 +63,36 @@ public:
   
   // Remove element from currently existing list
   inline void cull() {
-  	_prev->_next = _next;
-	  _next->_prev = _prev;
-	  _next = _prev = this;
+    _prev->_next = _next;
+    _next->_prev = _prev;
+    _next = _prev = this;
   }
 
-  // Switch element over to a new list
-  inline void pass(CDLList& u) {
-      _prev->_next = _next;
-      _next->_prev = _prev;
-      CDLList& v = *(u._next);
-      _next = &v;
-      _prev = &u;
-      v._prev = this;
-      u._next = this;
+  // Crop a new circular list from 'this' to 'p' (not included)
+  inline void join(CDLList& p) {
+    swap_pointers(p._prev, _prev);
+    p._prev->_next = &p;
+    _prev->_next = this;    
   };
 
-  // Join element with a new list, possibly joining two lists
-  inline void join(CDLList& p) {
-    if (this == &p) return;
-    CDLList& q = *(p._next);
-    CDLList& u = *(_next);
-    if ((&q == this) || (&u == &p)) return;
-    swap_pointers(p._next, _next);
-    swap_pointers(q._prev, u._prev);
+  // 'pass' element to another list
+  inline void pass(CDLList& l) {
+    CDLList& m = *(l._next);
+    _prev->_next = _next;
+    _next->_prev = _prev;
+    _next = &m;
+    _prev = &l;
+    m._prev = this;
+    l._next = this;
   };
 
   inline void swap(CDLList& p) {
-    if (this == &p) return;
-    CDLList& q = *(p._next);
-    CDLList& u = *(_next);
-    CDLList& o = *(p._prev);
-    CDLList& s = *(_prev);
-    if ((&q == this) || (&u == &p)) return;
     swap_pointers(p._next, _next);
-    swap_pointers(q._prev, u._prev);
     swap_pointers(p._prev, _prev);
-    swap_pointers(o._next, s._next);
+    p._next->_prev = &p;
+    p._prev->_next = &p;
+    _next->_prev = this;
+    _prev->_next = this;
   };
 };
 
