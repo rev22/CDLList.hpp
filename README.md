@@ -7,7 +7,7 @@ All operations provided are constant-time and composed of few instructions.
 
 Copyright © 2013 Michele Bini (see the file COPYING for licensing details)
 
-Sample usage
+Simple usage
 ------------
 
 Create a single-node list:
@@ -31,7 +31,7 @@ CDLList b(a);
 CDLList c(b);
 ````
 
-Create a function returning the size of a list:
+Function returning the size of a list:
 
 ````C++
 int length(CDLList &l) {
