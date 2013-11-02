@@ -77,9 +77,9 @@ public:
 
   // 'pass' element to another list
   inline void pass(CDLList& l) {
-    CDLList& m = *(l._next);
     _prev->_next = _next;
     _next->_prev = _prev;
+    CDLList& m = *(l._next);
     _next = &m;
     _prev = &l;
     m._prev = this;
